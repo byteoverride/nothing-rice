@@ -4,7 +4,7 @@ A Nothing-OS-themed Plasma 6 desktop: monochrome, near-black, one red accent.
 GNOME-style top bar, a floating macOS-style dock, Nothing widgets on the right,
 and a matching login screen.
 
-![Login screen](images/login.png)
+![Desktop](images/desktop.png)
 
 ---
 
@@ -54,6 +54,16 @@ button, live CPU/GPU/RAM/network, and a deliberately minimal tray.
 only colour. fastfetch with a dot-matrix `NOTHING` logo.
 
 ![Terminal](images/terminal.png)
+
+**Widgets** — a two-wide column on the right: weather, calendar, battery,
+dot-matrix clock, media, notifications and a photo frame.
+
+<img src="images/widgets.png" width="380">
+
+**Login** — the WhiteSur macOS layout restyled: same wallpaper as the desktop,
+JetBrains Mono, dark password pill with a red focus ring.
+
+![Login screen](images/login.png)
 
 ---
 
