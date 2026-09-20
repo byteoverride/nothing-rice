@@ -1,0 +1,17 @@
+[Desktop Entry]
+DefaultProfile=NothingDark.profile
+
+[General]
+ConfigVersion=1
+
+[KonsoleWindow]
+ShowMenuBarByDefault=false
+
+[MainWindow]
+ToolBarsMovable=Enabled
+
+[TabBar]
+TabBarVisibility=ShowTabBarWhenNeeded
+
+[UiSettings]
+ColorScheme=NothingDark

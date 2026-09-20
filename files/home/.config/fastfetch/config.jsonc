@@ -1,0 +1,58 @@
+// Nothing-style fastfetch — dot-matrix logo, grouped modules
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/dev/doc/json_schema.json",
+
+  "logo": {
+    "type": "file",
+    "source": "~/.config/fastfetch/nothing.txt",
+    "color": { "1": "white", "2": "black" },
+    "padding": { "top": 2, "left": 2, "right": 4 }
+  },
+
+  "display": {
+    "separator": "  ",
+    "color": { "keys": "white", "title": "red" }
+  },
+
+  "modules": [
+    "break",
+
+    { "type": "title", "format": "{user-name}\u001b[90m@\u001b[0m{host-name}" },
+    { "type": "custom", "format": "\u001b[90m────────────────────────────────\u001b[0m" },
+
+    { "type": "custom",   "format": "\u001b[31m●\u001b[0m \u001b[1mSYSTEM\u001b[0m" },
+    { "type": "os",       "key": "  OS        ", "keyColor": "white" },
+    { "type": "kernel",   "key": "  Kernel    ", "keyColor": "white" },
+    { "type": "host",     "key": "  Host      ", "keyColor": "white" },
+    { "type": "uptime",   "key": "  Uptime    ", "keyColor": "white" },
+    { "type": "packages", "key": "  Packages  ", "keyColor": "white" },
+    { "type": "shell",    "key": "  Shell     ", "keyColor": "white" },
+
+    "break",
+
+    { "type": "custom",  "format": "\u001b[31m●\u001b[0m \u001b[1mHARDWARE\u001b[0m" },
+    { "type": "cpu",     "key": "  CPU       ", "keyColor": "white", "showPeCoreCount": true },
+    { "type": "gpu",     "key": "  GPU       ", "keyColor": "white" },
+    { "type": "memory",  "key": "  Memory    ", "keyColor": "white" },
+    { "type": "swap",    "key": "  Swap      ", "keyColor": "white" },
+    { "type": "disk",    "key": "  Disk      ", "keyColor": "white" },
+    { "type": "battery", "key": "  Battery   ", "keyColor": "white" },
+
+    "break",
+
+    { "type": "custom",   "format": "\u001b[31m●\u001b[0m \u001b[1mDESKTOP\u001b[0m" },
+    { "type": "de",       "key": "  DE        ", "keyColor": "white" },
+    { "type": "wm",       "key": "  WM        ", "keyColor": "white" },
+    { "type": "theme",    "key": "  Theme     ", "keyColor": "white" },
+    { "type": "icons",    "key": "  Icons     ", "keyColor": "white" },
+    { "type": "font",     "key": "  Font      ", "keyColor": "white" },
+    { "type": "cursor",   "key": "  Cursor    ", "keyColor": "white" },
+    { "type": "display",  "key": "  Display   ", "keyColor": "white" },
+    { "type": "terminal", "key": "  Terminal  ", "keyColor": "white" },
+    { "type": "locale",   "key": "  Locale    ", "keyColor": "white" },
+
+    "break",
+    { "type": "colors", "symbol": "circle", "paddingLeft": 2 },
+    "break"
+  ]
+}
