@@ -1,3 +1,6 @@
+[Activities][LastVirtualDesktop]
+f7c8594d-18f7-4857-826f-7a1385915cc9=4f6b53ba-0172-4552-a334-80539388ff3d
+
 [Desktops]
 Id_1=4d9d362a-dbd1-40b4-a7fc-e66fe82ae7d3
 Id_2=4f6b53ba-0172-4552-a334-80539388ff3d
@@ -11,6 +14,15 @@ NoiseStrength=3
 [Plugins]
 blurEnabled=true
 contrastEnabled=true
+kzonesEnabled=true
+
+[Script-kzones]
+enableEdgeSnapping=true
+enableZoneOverlay=true
+enableZoneSelector=true
+layoutsJson=[{"name":"Halves","padding":6,"zones":[{"x":0,"y":0,"width":50,"height":100},{"x":50,"y":0,"width":50,"height":100}]},{"name":"Two thirds + third","padding":6,"zones":[{"x":0,"y":0,"width":66,"height":100},{"x":66,"y":0,"width":34,"height":100}]},{"name":"Thirds","padding":6,"zones":[{"x":0,"y":0,"width":33,"height":100},{"x":33,"y":0,"width":34,"height":100},{"x":67,"y":0,"width":33,"height":100}]},{"name":"Priority grid","padding":6,"zones":[{"x":0,"y":0,"width":25,"height":100},{"x":25,"y":0,"width":50,"height":100},{"x":75,"y":0,"width":25,"height":100}]},{"name":"Main + stack","padding":6,"zones":[{"x":0,"y":0,"width":66,"height":100},{"x":66,"y":0,"width":34,"height":50},{"x":66,"y":50,"width":34,"height":50}]},{"name":"Quadrants","padding":6,"zones":[{"x":0,"y":0,"width":50,"height":50},{"x":50,"y":0,"width":50,"height":50},{"x":0,"y":50,"width":50,"height":50},{"x":50,"y":50,"width":50,"height":50}]},{"name":"Full","padding":6,"zones":[{"x":0,"y":0,"width":100,"height":100}]}]
+rememberWindowGeometries=true
+showOsdMessages=false
 
 [Tiling]
 padding=4

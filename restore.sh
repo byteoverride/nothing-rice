@@ -179,6 +179,14 @@ kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key library "org.kde.
 kwriteconfig6 --file kwinrc --group org.kde.kdecoration2 --key theme   "__aurorae__svg__NothingDots"
 ok "decoration: Nothing Dots"
 
+# KZones snap layouts (installed by fetch.sh; layouts ride along in kwinrc)
+if [ -d "$HOME/.local/share/kwin/scripts/kzones" ]; then
+  kwriteconfig6 --file kwinrc --group Plugins --key kzonesEnabled true
+  ok "KZones enabled"
+else
+  warn "KZones not installed - run ./fetch.sh for snap layouts"
+fi
+
 # Plasma caches theme SVGs hard - the red dock indicators need these gone
 rm -f  "$HOME"/.cache/plasma-svgelements* "$HOME"/.cache/plasma_theme_*.kcache 2>/dev/null
 rm -rf "$HOME"/.cache/ksvg-elements       "$HOME"/.cache/plasmashell/qmlcache  2>/dev/null

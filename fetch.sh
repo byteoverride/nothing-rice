@@ -100,6 +100,18 @@ if command -v git >/dev/null; then
   else warn "clone failed - install WhiteSur-kde manually"; fi
 else warn "git not installed"; fi
 
+# --- 3b. KZones (Windows-11-style snap layouts) ----------------------------
+say "KZones window-snapping script"
+if [ -d "$HOME/.local/share/kwin/scripts/kzones" ]; then ok "already installed"; else
+  url="$(dl_url 1909220)"
+  if [ -n "$url" ]; then
+    f="$WORK/kzones.kwinscript"
+    curl -sSL --max-time 180 -o "$f" "$url" 2>/dev/null
+    kpackagetool6 -t KWin/Script -i "$f" >/dev/null 2>&1 && ok "installed" \
+      || warn "install failed - get it from store.kde.org/p/1909220"
+  else warn "could not resolve download link"; fi
+fi
+
 # --- 4. JetBrains Mono Nerd Font -------------------------------------------
 if [ "$DO_FONT" -eq 1 ]; then
   say "JetBrainsMono Nerd Font (~78MB)"
