@@ -5,9 +5,9 @@ RightButton;NoModifier=org.kde.contextmenu
 RightButton;NoModifier=org.kde.contextmenu
 
 [Containments][1]
-ItemGeometries-1800x1013=Applet-76:1344,48,416,208,0;Applet-70:1344,252.763,208,176,0;Applet-72:1344,431.538,208,208,0;Applet-78:1552,252.763,208,208,0;Applet-80:1344,636.301,208,160,0;Applet-74:1552,431.538,208,208,0;Applet-82:1552,636.301,208,208,0;
+ItemGeometries-1800x1013=Applet-76:1344,48,416,208,0;Applet-70:1344,256,208,208,0;Applet-72:1344,480,208,208,0;Applet-78:1552,256,208,208,0;Applet-74:1552,480,208,208,0;Applet-80:1344,688,208,208,0;Applet-82:1552,688,208,208,0;
 ItemGeometries-1800x1125=Applet-76:1344,48,416,208,0;Applet-70:1344,256,208,208,0;Applet-72:1344,480,208,208,0;Applet-78:1552,256,208,208,0;Applet-74:1552,480,208,208,0;Applet-80:1344,688,208,208,0;Applet-82:1552,688,208,208,0;
-ItemGeometriesHorizontal=Applet-76:1344,48,416,208,0;Applet-70:1344,252.763,208,176,0;Applet-72:1344,431.538,208,208,0;Applet-78:1552,252.763,208,208,0;Applet-80:1344,636.301,208,160,0;Applet-74:1552,431.538,208,208,0;Applet-82:1552,636.301,208,208,0;
+ItemGeometriesHorizontal=Applet-76:1344,48,416,208,0;Applet-70:1344,256,208,208,0;Applet-72:1344,480,208,208,0;Applet-78:1552,256,208,208,0;Applet-74:1552,480,208,208,0;Applet-80:1344,688,208,208,0;Applet-82:1552,688,208,208,0;
 activityId=f7c8594d-18f7-4857-826f-7a1385915cc9
 formfactor=0
 immutability=1
@@ -31,6 +31,13 @@ plugin=com.jaxparrow07.nothingkdewidgets.media
 [Containments][1][Applets][76]
 immutability=1
 plugin=com.jaxparrow07.nothingkdewidgets.weather
+
+[Containments][1][Applets][76][Configuration][ConfigDialog]
+DialogHeight=540
+DialogWidth=720
+
+[Containments][1][Applets][76][Configuration][General]
+location=Kampala
 
 [Containments][1][Applets][78]
 immutability=1
@@ -59,8 +66,14 @@ subTextColor=#9a9a9a
 immutability=1
 plugin=com.jaxparrow07.nothingkdewidgets.photo
 
+[Containments][1][Applets][82][Configuration][General]
+slideshowEnabled=false
+slideshowFolder=
+slideshowInterval=60
+slideshowShuffle=true
+
 [Containments][1][General]
-positions={"1800x1125":[]}
+positions={"1800x1013":[],"1800x1125":[]}
 
 [Containments][1][Wallpaper][org.kde.image][General]
 Image=/home/byteoverride/.local/share/wallpapers/Nothing1/
@@ -257,10 +270,14 @@ plugin=org.kde.plasma.bluetooth
 
 [Containments][53][Applets][83]
 immutability=1
-plugin=org.kde.plasma.mediacontroller
+plugin=org.kde.kdeconnect
 
 [Containments][53][Applets][83][Configuration]
 PreloadWeight=10
+
+[Containments][53][Applets][85]
+immutability=1
+plugin=org.kde.plasma.mediacontroller
 
 [Containments][53][General]
 extraItems=org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardindicator,org.kde.plasma.mediacontroller,org.kde.plasma.battery,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.kupapplet,org.kde.plasma.volume,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout,org.kde.kdeconnect
