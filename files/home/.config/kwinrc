@@ -1,9 +1,10 @@
 [Activities][LastVirtualDesktop]
-f7c8594d-18f7-4857-826f-7a1385915cc9=4f6b53ba-0172-4552-a334-80539388ff3d
+f7c8594d-18f7-4857-826f-7a1385915cc9=51f22947-652d-4bb1-b8f3-162d66ec7323
 
 [Desktops]
-Id_1=4d9d362a-dbd1-40b4-a7fc-e66fe82ae7d3
-Id_2=4f6b53ba-0172-4552-a334-80539388ff3d
+Id_1=51f22947-652d-4bb1-b8f3-162d66ec7323
+Id_2=b9c91ebe-5292-45af-b138-9b6cf3d08df2
+Name_1=Desktop 2
 Number=2
 Rows=1
 
@@ -26,6 +27,9 @@ showOsdMessages=false
 
 [Tiling]
 padding=4
+
+[Tiling][83023287-77e7-5c86-89fc-871c407b1c72]
+tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}
 
 [Tiling][d54f0da4-ce95-56e0-b8ad-2777031c720b]
 tiles={"layoutDirection":"horizontal","tiles":[{"width":0.25},{"width":0.5},{"width":0.25}]}

@@ -5,8 +5,9 @@ RightButton;NoModifier=org.kde.contextmenu
 RightButton;NoModifier=org.kde.contextmenu
 
 [Containments][1]
+ItemGeometries-1800x1013=Applet-76:1344,48,416,208,0;Applet-70:1344,252.763,208,176,0;Applet-72:1344,431.538,208,208,0;Applet-78:1552,252.763,208,208,0;Applet-80:1344,636.301,208,160,0;Applet-74:1552,431.538,208,208,0;Applet-82:1552,636.301,208,208,0;
 ItemGeometries-1800x1125=Applet-76:1344,48,416,208,0;Applet-70:1344,256,208,208,0;Applet-72:1344,480,208,208,0;Applet-78:1552,256,208,208,0;Applet-74:1552,480,208,208,0;Applet-80:1344,688,208,208,0;Applet-82:1552,688,208,208,0;
-ItemGeometriesHorizontal=Applet-76:1344,48,416,208,0;Applet-70:1344,256,208,208,0;Applet-72:1344,480,208,208,0;Applet-78:1552,256,208,208,0;Applet-74:1552,480,208,208,0;Applet-80:1344,688,208,208,0;Applet-82:1552,688,208,208,0;
+ItemGeometriesHorizontal=Applet-76:1344,48,416,208,0;Applet-70:1344,252.763,208,176,0;Applet-72:1344,431.538,208,208,0;Applet-78:1552,252.763,208,208,0;Applet-80:1344,636.301,208,160,0;Applet-74:1552,431.538,208,208,0;Applet-82:1552,636.301,208,208,0;
 activityId=f7c8594d-18f7-4857-826f-7a1385915cc9
 formfactor=0
 immutability=1
@@ -112,7 +113,7 @@ immutability=1
 plugin=org.kde.plasma.systemtray
 
 [Containments][26][Applets][52][Configuration]
-PreloadWeight=70
+PreloadWeight=85
 SystrayContainmentId=53
 
 [Containments][26][Applets][77]
@@ -129,7 +130,7 @@ immutability=1
 plugin=org.kde.plasma.codesnippets
 
 [Containments][26][Applets][81][Configuration]
-PreloadWeight=60
+PreloadWeight=75
 popupHeight=450
 popupWidth=540
 
@@ -156,7 +157,7 @@ plugin=org.kde.plasma.icontasks
 [Containments][45][Applets][46][Configuration][General]
 groupingStrategy=1
 indicateAudioStreams=true
-launchers=applications:org.kde.konsole.desktop,applications:firefox-esr.desktop,applications:org.kde.dolphin.desktop,applications:vlc.desktop,applications:code.desktop,applications:com.discordapp.Discord.desktop,applications:spotify.desktop
+launchers=applications:org.kde.konsole.desktop,applications:firefox-esr.desktop,applications:org.kde.dolphin.desktop,applications:org.gnome.TextEditor.desktop,applications:vlc.desktop,applications:code.desktop,applications:com.discordapp.Discord.desktop,applications:spotify.desktop,applications:proton.vpn.app.gtk.desktop,applications:kitty.desktop,applications:burp.desktop
 maxStripes=1
 showOnlyCurrentActivity=false
 showOnlyCurrentDesktop=false
@@ -211,9 +212,15 @@ migrated=true
 immutability=1
 plugin=org.kde.plasma.notifications
 
+[Containments][53][Applets][61][Configuration]
+PreloadWeight=100
+
 [Containments][53][Applets][62]
 immutability=1
 plugin=org.kde.plasma.devicenotifier
+
+[Containments][53][Applets][62][Configuration]
+PreloadWeight=85
 
 [Containments][53][Applets][63]
 immutability=1
@@ -227,19 +234,22 @@ plugin=org.kde.plasma.keyboardlayout
 immutability=1
 plugin=org.kde.plasma.brightness
 
+[Containments][53][Applets][65][Configuration]
+PreloadWeight=42
+
 [Containments][53][Applets][66]
 immutability=1
 plugin=org.kde.plasma.battery
 
 [Containments][53][Applets][66][Configuration]
-PreloadWeight=55
+PreloadWeight=47
 
 [Containments][53][Applets][67]
 immutability=1
 plugin=org.kde.plasma.networkmanagement
 
 [Containments][53][Applets][67][Configuration]
-PreloadWeight=55
+PreloadWeight=65
 
 [Containments][53][Applets][68]
 immutability=1
@@ -250,13 +260,25 @@ immutability=1
 plugin=org.kde.plasma.mediacontroller
 
 [Containments][53][Applets][83][Configuration]
-PreloadWeight=34
+PreloadWeight=10
 
 [Containments][53][General]
-extraItems=org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardindicator,org.kde.plasma.mediacontroller,org.kde.plasma.battery,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.kupapplet,org.kde.plasma.volume,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout
+extraItems=org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardindicator,org.kde.plasma.mediacontroller,org.kde.plasma.battery,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.kupapplet,org.kde.plasma.volume,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout,org.kde.kdeconnect
 hiddenItems=org.kde.plasma.networkmanagement,org.kde.plasma.battery,org.kde.plasma.bluetooth,org.kde.plasma.volume,org.kde.plasma.brightness,org.kde.plasma.clipboard,org.kde.plasma.keyboardindicator,org.kde.plasma.keyboardlayout,org.kde.plasma.cameraindicator,org.kde.plasma.printmanager,org.kde.plasma.vault,org.kde.plasma.devicenotifier,org.kde.kscreen,org.kde.plasma.manage-inputmethod,org.kde.plasma.mediacontroller,org.kde.kupapplet
-knownItems=org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardindicator,org.kde.plasma.mediacontroller,org.kde.plasma.battery,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.kupapplet,org.kde.plasma.volume,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout
+knownItems=org.kde.plasma.brightness,org.kde.plasma.manage-inputmethod,org.kde.kscreen,org.kde.plasma.printmanager,org.kde.plasma.networkmanagement,org.kde.plasma.keyboardindicator,org.kde.plasma.mediacontroller,org.kde.plasma.battery,org.kde.plasma.cameraindicator,org.kde.plasma.clipboard,org.kde.kupapplet,org.kde.plasma.volume,org.kde.plasma.notifications,org.kde.plasma.devicenotifier,org.kde.plasma.vault,org.kde.plasma.bluetooth,org.kde.plasma.keyboardlayout,org.kde.kdeconnect
 shownItems=org.kde.plasma.notifications
+
+[Containments][84]
+activityId=f7c8594d-18f7-4857-826f-7a1385915cc9
+formfactor=0
+immutability=1
+lastScreen=1
+location=0
+plugin=org.kde.plasma.folder
+wallpaperplugin=org.kde.image
+
+[Containments][84][General]
+positions={"2021x1137":[]}
 
 [ScreenMapping]
 itemsOnDisabledScreens=

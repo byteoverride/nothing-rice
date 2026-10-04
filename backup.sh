@@ -1,29 +1,39 @@
 #!/usr/bin/env bash
-# Re-snapshot the CURRENT desktop into ./files, so the bundle matches
-# whatever you have tweaked since. Run this before you switch away.
+# Re-snapshot the CURRENT desktop into ./files, so the bundle matches whatever
+# you have tweaked since. Run this before you switch away.
+#
+# Only captures what is OURS to publish. Third-party assets (widgets, icons,
+# WhiteSur, fonts) and the copyrighted Nothing wallpapers are deliberately left
+# out - fetch.sh pulls those from source. See CREDITS.md.
 set -uo pipefail
 
 HERE="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 DST="$HERE/files"
-BLD=$'\e[1m'; GRN=$'\e[32m'; OFF=$'\e[0m'
-say() { printf '%s>>%s %s\n' "$BLD" "$OFF" "$*"; }
-ok()  { printf '   %s+%s %s\n' "$GRN" "$OFF" "$*"; }
+GRN=$'\e[32m'; YEL=$'\e[33m'; BLD=$'\e[1m'; OFF=$'\e[0m'
+say()  { printf '%s>>%s %s\n' "$BLD" "$OFF" "$*"; }
+ok()   { printf '   %s+%s %s\n' "$GRN" "$OFF" "$*"; }
+warn() { printf '   %s!%s %s\n' "$YEL" "$OFF" "$*"; }
 
-read -rp "Overwrite the bundle in $DST with your current setup? [y/N] " r
-[[ "$r" =~ ^[Yy]$ ]] || { echo "aborted"; exit 1; }
+if [ "${1:-}" != "--yes" ]; then
+  read -rp "Overwrite the bundle in $DST with your current setup? [y/N] " r
+  [[ "$r" =~ ^[Yy]$ ]] || { echo "aborted"; exit 1; }
+fi
 
 rm -rf "$DST"
 mkdir -p "$DST/home/.config" "$DST/home/.local/share" \
+         "$DST/overlays/WhiteSur-dark/widgets" \
          "$DST/root/etc/sddm.conf.d" "$DST/root/usr/share/sddm/themes"
 
+# --- config ---------------------------------------------------------------
+# per-app rc files are NOT bundled: they carry recent-file history, and
+# restore.sh merges the ColorScheme key in with kwriteconfig6 instead.
 say "Config"
-# NOTE: per-app rc files are deliberately NOT bundled - they carry recent-file
-# history. restore.sh merges the ColorScheme key in with kwriteconfig6 instead.
 for f in kdeglobals kwinrc plasmarc plasmashellrc plasma-org.kde.plasma.desktop-appletsrc konsolerc; do
   [ -f "$HOME/.config/$f" ] && cp "$HOME/.config/$f" "$DST/home/.config/"
 done
 for d in kitty fastfetch; do
-  [ -d "$HOME/.config/$d" ] && mkdir -p "$DST/home/.config/$d" && cp "$HOME/.config/$d"/* "$DST/home/.config/$d/" 2>/dev/null
+  [ -d "$HOME/.config/$d" ] && mkdir -p "$DST/home/.config/$d" \
+    && cp "$HOME/.config/$d"/* "$DST/home/.config/$d/" 2>/dev/null
 done
 for d in gtk-3.0 gtk-4.0; do
   [ -d "$HOME/.config/$d" ] || continue
@@ -34,24 +44,41 @@ for d in gtk-3.0 gtk-4.0; do
 done
 ok "$(find "$DST/home/.config" -type f | wc -l) files"
 
-say "Themes, widgets, fonts"
+# --- our themes only ------------------------------------------------------
+say "Our themes"
 S="$HOME/.local/share"; D="$DST/home/.local/share"
-mkdir -p "$D/aurorae/themes" "$D/plasma/desktoptheme" "$D/wallpapers"
-cp -r "$S/color-schemes"                  "$D/"                      2>/dev/null
-cp -r "$S/konsole"                        "$D/"                      2>/dev/null
-cp -r "$S/icons/YAMIS"                    "$D/icons_YAMIS"           2>/dev/null
-cp -r "$S/fonts/JetBrainsMonoNerd"        "$D/fonts_JetBrainsMonoNerd" 2>/dev/null
-cp -r "$S/aurorae/themes/NothingDots"     "$D/aurorae/themes/"       2>/dev/null
-cp -r "$S/plasma/desktoptheme/WhiteSur-dark" "$D/plasma/desktoptheme/" 2>/dev/null
-cp -r "$S/plasma/plasmoids"               "$D/plasma/"               2>/dev/null
-for w in Nothing1 Nothing2 Nothing3; do cp -r "$S/wallpapers/$w" "$D/wallpapers/" 2>/dev/null; done
-ok "$(ls "$D/plasma/plasmoids" 2>/dev/null | wc -l) widgets"
+mkdir -p "$D/color-schemes" "$D/aurorae/themes" "$D/konsole"
+# only the schemes we authored - not Otto / WhiteSur*, which ship with others
+for c in NothingDark NothingVSCode; do
+  [ -f "$S/color-schemes/$c.colors" ] && cp "$S/color-schemes/$c.colors" "$D/color-schemes/"
+done
+cp -r "$S/aurorae/themes/NothingDots" "$D/aurorae/themes/" 2>/dev/null
+rm -f "$D/aurorae/themes/NothingDots"/*.bak
+cp "$S/konsole/NothingDark."* "$D/konsole/" 2>/dev/null
+ok "$(ls "$D/color-schemes" | wc -l) colour schemes, Nothing Dots, Konsole profile"
 
+# --- the one patched third-party file we overlay --------------------------
+TS="$S/plasma/desktoptheme/WhiteSur-dark/widgets/tasks.svgz"
+if [ -f "$TS" ]; then
+  cp "$TS" "$DST/overlays/WhiteSur-dark/widgets/"
+  ok "dock-indicator overlay"
+else
+  warn "WhiteSur-dark not installed - overlay not captured"
+fi
+
+# --- login screen (without the wallpaper-derived background) --------------
 say "Login screen"
-cp -r /usr/share/sddm/themes/NothingLogin "$DST/root/usr/share/sddm/themes/" 2>/dev/null && ok "sddm theme"
-cp /etc/sddm.conf.d/10-nothing.conf       "$DST/root/etc/sddm.conf.d/"       2>/dev/null && ok "sddm config"
+if [ -d /usr/share/sddm/themes/NothingLogin ]; then
+  cp -r /usr/share/sddm/themes/NothingLogin "$DST/root/usr/share/sddm/themes/"
+  # background.png is generated from the Nothing wallpaper: copyrighted, never shipped
+  rm -f "$DST/root/usr/share/sddm/themes/NothingLogin/background.png"
+  ok "sddm theme (background excluded by design)"
+fi
+cp /etc/sddm.conf.d/10-nothing.conf "$DST/root/etc/sddm.conf.d/" 2>/dev/null && ok "sddm config"
 
-RES="$(kscreen-doctor -o 2>/dev/null | sed 's/\x1b\[[0-9;]*m//g' | grep -oP 'Geometry:\s*[0-9]+,[0-9]+\s+\K[0-9]+x[0-9]+' | head -1)"
+# --- manifest -------------------------------------------------------------
+RES="$(kscreen-doctor -o 2>/dev/null | sed 's/\x1b\[[0-9;]*m//g' \
+      | grep -oP 'Geometry:\s*[0-9]+,[0-9]+\s+\K[0-9]+x[0-9]+' | head -1)"
 cat > "$DST/MANIFEST" <<EOF
 ORIGIN_HOME=$HOME
 ORIGIN_USER=$USER
@@ -60,11 +87,13 @@ ORIGIN_DATE=$(date -Iseconds)
 PLASMA=$(plasmashell --version 2>/dev/null | awk '{print $2}')
 EOF
 
-# safety: never let a secret into the bundle
+# --- guards ---------------------------------------------------------------
 if [ -n "${SUDO_PASS:-}" ] && grep -rqF "$SUDO_PASS" "$DST" 2>/dev/null; then
   echo "!! a secret was found in the bundle - removing those files" >&2
   grep -rlF "$SUDO_PASS" "$DST" 2>/dev/null | tee /dev/stderr | xargs -r rm -f
 fi
+BIG="$(find "$DST" -type f -size +2M 2>/dev/null)"
+[ -n "$BIG" ] && { warn "unexpectedly large files - check these are yours to publish:"; echo "$BIG" | sed 's/^/     /'; }
 
 echo
 echo "${GRN}${BLD}Bundle updated${OFF} - $(du -sh "$DST" | cut -f1)"
