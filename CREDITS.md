@@ -15,6 +15,7 @@ in one case is copyrighted artwork that must not be redistributed at all.
 | **Nothing Dots** Aurorae decoration | GPL-3.0 | **derived from WhiteSur-kde** |
 | **NothingLogin** SDDM theme | GPL-3.0 | **derived from WhiteSur-kde** |
 | `overlays/.../tasks.svgz` | GPL-3.0 | **modified from WhiteSur-kde** |
+| `overlays/photo-widget/` | GPL-2.0+ | **patched from Nothing OS Photo Frame** |
 
 The repo is GPL-3.0 because three of those are derivative works of
 [WhiteSur-kde](https://github.com/vinceliuice/WhiteSur-kde) by **vinceliuice**,
@@ -28,6 +29,9 @@ What was changed in each derivative:
   near-black.
 - **NothingLogin** - WhiteSur 6.2 SDDM theme with `Input.qml` restyled to a dark
   pill with a red focus ring, and `theme.conf` retargeted to JetBrains Mono.
+- **photo-widget** - the Nothing OS Photo Frame with folder-slideshow support
+  added (`FolderListModel`, interval timer, shuffle, cross-fade). Upstream only
+  supports a single image. Original is GPL-2.0+ by *jaxparrow07*.
 - **tasks.svgz** - `normal-*` and `minimized-*` groups switched from
   `ColorScheme-Text` to `ColorScheme-NegativeText` so background and minimised
   apps show a red dock indicator.

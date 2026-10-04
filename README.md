@@ -90,6 +90,21 @@ JetBrains Mono, dark password pill with a red focus ring.
 The tray shows only network, battery and notifications. Bluetooth, volume,
 brightness and the rest live behind the expander arrow, GNOME-style.
 
+### Photo frame: single image or folder slideshow
+
+Right-click the photo widget on the desktop and pick **Configure**:
+
+- **Image** page, *Browse* - pick one image
+- **Slideshow** section - tick *Cycle through images in a folder*, choose a
+  folder, set the interval and whether to shuffle
+
+Folder slideshow is a patch this repo adds to the upstream Nothing photo frame,
+which only supports a single image. It uses `FolderListModel`, matches
+png/jpg/jpeg/webp/bmp/gif, ignores subfolders, and cross-fades between images.
+The patched files live in `files/overlays/photo-widget/` and are re-applied by
+both `fetch.sh` and `restore.sh`, so a widget update from the store does not
+quietly revert it.
+
 ### Second monitor
 
 Plasma panels belong to one screen, so a second monitor comes up with an empty

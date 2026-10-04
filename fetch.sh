@@ -75,6 +75,13 @@ for entry in $WIDGETS; do
 done
 echo "   $OK ok, $FAIL failed"
 
+# our slideshow patch for the Nothing photo frame (folder + shuffle support)
+PW="$HOME/.local/share/plasma/plasmoids/com.jaxparrow07.nothingkdewidgets.photo"
+if [ -d "$PW" ] && [ -d "$HERE/files/overlays/photo-widget" ]; then
+  cp -a "$HERE/files/overlays/photo-widget/contents/." "$PW/contents/" \
+    && ok "photo frame patched for folder slideshow"
+fi
+
 # --- 2. Icons --------------------------------------------------------------
 say "YAMIS icon theme"
 if [ -d "$HOME/.local/share/icons/YAMIS" ]; then ok "already installed"; else

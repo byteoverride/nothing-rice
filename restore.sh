@@ -131,6 +131,13 @@ if [ -d "$(dirname "$TSVG")" ]; then
   cp -a "$SRC/overlays/WhiteSur-dark/widgets/tasks.svgz" "$TSVG" && ok "red dock indicators overlaid"
 fi
 
+# slideshow patch for the Nothing photo frame
+PW="$HOME/.local/share/plasma/plasmoids/com.jaxparrow07.nothingkdewidgets.photo"
+if [ -d "$PW" ] && [ -d "$SRC/overlays/photo-widget" ]; then
+  cp -a "$SRC/overlays/photo-widget/contents/." "$PW/contents/" \
+    && ok "photo frame slideshow patch applied"
+fi
+
 # absolute paths baked into the panel config (wallpaper etc.)
 if [ "$ORIGIN_HOME" != "$HOME" ]; then
   say "Rewriting paths: $ORIGIN_HOME -> $HOME"
