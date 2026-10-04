@@ -43,6 +43,12 @@ for d in gtk-3.0 gtk-4.0; do
     [ -f "$HOME/.config/$d/$f" ] && cp "$HOME/.config/$d/$f" "$DST/home/.config/$d/"
   done
 done
+# Plasma 6 keeps the ACTIVE colour scheme / style pointers here, not in
+# ~/.config/kdeglobals - kreadconfig6 finds them via the config cascade.
+if [ -d "$HOME/.config/kdedefaults" ]; then
+  mkdir -p "$DST/home/.config/kdedefaults"
+  cp "$HOME/.config/kdedefaults"/* "$DST/home/.config/kdedefaults/" 2>/dev/null
+fi
 ok "$(find "$DST/home/.config" -type f | wc -l) files"
 
 # --- our themes only ------------------------------------------------------
