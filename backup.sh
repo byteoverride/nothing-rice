@@ -66,6 +66,19 @@ else
   warn "WhiteSur-dark not installed - overlay not captured"
 fi
 
+# our slideshow patch for the Nothing photo frame
+PW="$HOME/.local/share/plasma/plasmoids/com.jaxparrow07.nothingkdewidgets.photo"
+if grep -q FolderListModel "$PW/contents/ui/main.qml" 2>/dev/null; then
+  mkdir -p "$DST/overlays/photo-widget/contents/ui/config" \
+           "$DST/overlays/photo-widget/contents/config"
+  cp "$PW/contents/ui/main.qml"            "$DST/overlays/photo-widget/contents/ui/"
+  cp "$PW/contents/config/main.xml"        "$DST/overlays/photo-widget/contents/config/"
+  cp "$PW/contents/ui/config/ConfigImage.qml" "$DST/overlays/photo-widget/contents/ui/config/"
+  ok "photo-frame slideshow patch"
+else
+  warn "photo frame is unpatched - slideshow overlay not captured"
+fi
+
 # --- login screen (without the wallpaper-derived background) --------------
 say "Login screen"
 if [ -d /usr/share/sddm/themes/NothingLogin ]; then
