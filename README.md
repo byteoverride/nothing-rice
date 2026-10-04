@@ -151,20 +151,37 @@ appears; drop it into a zone. Seven layouts ship with this setup:
 Plasma 6.3 also has custom tiling built in: `Meta+T` opens a tile editor and
 `Meta+arrow` quick-tiles. KZones adds the visual picker on top.
 
-### Colours are split three ways
-| Surface | Scheme | Background |
-|---|---|---|
-| Panel, desktop, widgets | NothingDark | `#0a0a0a` |
-| Konsole | NothingDark | `#0a0a0a` |
-| Dolphin, Kate, Ark, Gwenview, Okular, Spectacle, System Settings, KCalc | NothingVSCode | `#1e1e1e` / `#242424` |
+### Colours
 
-Plasma 6 panels **always** follow the global scheme - plasmashell ignores per-app
-`[UiSettings] ColorScheme` overrides even though Konsole honours them. That's why
-the apps are pinned individually instead of the panel.
+One global scheme, **NothingDark** (`#0a0a0a` with a `#d71921` red accent), used
+by the panel, the desktop, and every Qt/KDE application.
+
+Per-app colour schemes mostly do not work. The `[UiSettings] ColorScheme` key is
+only honoured by applications that implement `KColorSchemeManager` - Konsole does,
+but Dolphin, Kate, Ark, Gwenview and the rest ignore it completely and follow the
+global scheme. `KDE_COLOR_SCHEME_PATH` is ignored too, verified on a fresh process.
+plasmashell also ignores it, so the panel cannot be themed separately from apps.
+
+In practice that means **the global scheme is the only dial**. If you want to try
+a different look, apply it globally and revert if you dislike it:
+
+```bash
+plasma-apply-colorscheme SomeOtherScheme   # try
+plasma-apply-colorscheme NothingDark       # revert
+```
+
+`NothingVSCode.colors` ships as a second, slightly lighter scheme
+(`#1e1e1e` / `#242424`) if you prefer it - apply it the same way.
 
 ---
 
 ## Things that cost me time
+
+**Per-app colour schemes are mostly a myth.** `[UiSettings] ColorScheme` only
+works in apps implementing `KColorSchemeManager`. Konsole honours it; Dolphin,
+Kate and friends silently ignore it, as does plasmashell, and `KDE_COLOR_SCHEME_PATH`
+is ignored as well. Config that reads as applied can have no effect at all, so
+check a running window, not the file.
 
 **Aurorae paints its own titlebar** and ignores the colour scheme entirely.
 Switching decorations moved titlebars from `#080808` to `#343434`; the fix is
@@ -201,8 +218,8 @@ yours in the files that carry absolute paths.
 **Apps that theme themselves** - VS Code, Firefox, Chrome, Discord, Spotify,
 Obsidian, Ghidra - ignore the KDE scheme entirely and keep their own settings.
 
-**New KDE apps** come up near-black rather than grey until you add
-`[UiSettings] ColorScheme=NothingVSCode` to their rc file.
+**Per-app theming is not possible.** Only Konsole honours a per-app colour
+scheme; everything else follows the global one. See the Colours section.
 
 **ibus and remmina** publish their own tray icons, which KDE's hidden-items list
 cannot control. Turn those off in the apps themselves.

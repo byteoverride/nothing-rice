@@ -149,14 +149,11 @@ fi
 
 fc-cache -f >/dev/null 2>&1 && ok "font cache rebuilt"
 
-# per-app colour pins: merged in, so we never clobber an app's own settings
-say "Pinning app colour schemes"
-for rc in dolphinrc katerc arkrc gwenviewrc okularrc spectaclerc systemsettingsrc \
-          kcalcrc kwriterc kinforc filelightrc partitionmanagerrc; do
-  kwriteconfig6 --file "$rc" --group UiSettings --key ColorScheme NothingVSCode 2>/dev/null
-done
+# Per-app colour schemes only work in apps that implement KColorSchemeManager.
+# Konsole does; Dolphin, Kate, Ark and the rest ignore the key entirely, so
+# pinning them is pointless - they follow the global scheme.
 kwriteconfig6 --file konsolerc --group UiSettings --key ColorScheme NothingDark 2>/dev/null
-ok "12 KDE apps -> NothingVSCode, Konsole -> NothingDark"
+ok "Konsole pinned to NothingDark (other apps follow the global scheme)"
 
 
 # --- 4. login screen -------------------------------------------------------

@@ -133,6 +133,7 @@ ForegroundPositive=154,154,154
 ForegroundVisited=168,49,58
 
 [General]
+ColorScheme=NothingDark
 ColorSchemeHash=eaaf8b7a65c5322d884be9e78db154f2dc409109
 fixed=JetBrains Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 font=JetBrains Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
@@ -142,6 +143,9 @@ toolBarFont=JetBrains Mono,10,-1,5,400,0,0,0,0,0,0,0,0,0,0,1
 
 [Icons]
 Theme=YAMIS
+
+[KDE]
+widgetStyle=Breeze
 
 [KFileDialog Settings]
 Allow Expansion=false
