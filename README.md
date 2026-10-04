@@ -90,6 +90,24 @@ JetBrains Mono, dark password pill with a red focus ring.
 The tray shows only network, battery and notifications. Bluetooth, volume,
 brightness and the rest live behind the expander arrow, GNOME-style.
 
+### Second monitor
+
+Plasma panels belong to one screen, so a second monitor comes up with an empty
+desktop and no panels. There is no built-in setting for this.
+
+```bash
+./multiscreen.sh            # mirror the top bar and dock onto every screen
+./multiscreen.sh --list     # show screens and which have panels
+./multiscreen.sh --clean    # remove panels from secondary screens
+```
+
+Run it after connecting a monitor. It copies the dock's pinned launchers across
+and verifies each panel actually landed on the target screen, removing it again
+if Plasma rejects the assignment.
+
+Desktop widgets are a separate matter: they live on one screen's containment and
+are not mirrored.
+
 ### Snap layouts
 
 KZones gives you Windows-11-style snap layouts. Drag a window and a zone picker
@@ -158,7 +176,7 @@ just the one key with `kwriteconfig6`.
 ## Caveats
 
 **Screen resolution.** Desktop widget positions are stored per-resolution
-(`ItemGeometries-<W>x<H>`) for the size recorded in `files/MANIFEST`. On a
+(`ItemGeometries-<W>x<H>`) for the size recorded in `files/MANIFEST`, currently 1800x1013. On a
 different screen the column lands wrong - `restore.sh` warns when it detects a
 mismatch. Drag them into place, or regenerate the grid.
 
