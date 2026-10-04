@@ -28,7 +28,8 @@ mkdir -p "$DST/home/.config" "$DST/home/.local/share" \
 # per-app rc files are NOT bundled: they carry recent-file history, and
 # restore.sh merges the ColorScheme key in with kwriteconfig6 instead.
 say "Config"
-for f in kdeglobals kwinrc plasmarc plasmashellrc plasma-org.kde.plasma.desktop-appletsrc konsolerc; do
+for f in kdeglobals kwinrc plasmarc plasmashellrc plasma-org.kde.plasma.desktop-appletsrc konsolerc \
+         kscreenlockerrc; do
   [ -f "$HOME/.config/$f" ] && cp "$HOME/.config/$f" "$DST/home/.config/"
 done
 for d in kitty fastfetch; do

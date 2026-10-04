@@ -1,0 +1,5 @@
+[Daemon]
+Timeout=30
+
+[Greeter][Wallpaper][org.kde.image][General]
+Image=/home/byteoverride/.local/share/wallpapers/Nothing1/
